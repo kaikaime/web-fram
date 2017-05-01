@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.ProductImgMapper">
+	<insert id="addProductImg" parameterType="com.shop.pojo.ImgShopPojo" 
+	keyProperty="imgShopId" useGeneratedKeys="true">
+		insert into imgShop(imgShopNick ,shopId )values(#{imgshopNick},#{shop.shopId})
+	</insert>
+	<delete id="deleteByIdProductImg" parameterType="Integer">
+		delete from imgShop where shopId  =#{productId}
+	</delete>
+	<select id="findImgByProdcutId" parameterType="Integer" resultType="com.shop.pojo.ImgShopPojo">
+		select sp.imgShopId imgShopId,sp.imgShopNick imgshopNick from imgShop sp where shopId  =#{productId}
+	</select>
+</mapper>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.ProductCenterRepositoryMapper">
+	<insert id="addProductCenterRepository" parameterType="com.shop.pojo.ShopRepositoryPojo" 
+	keyProperty="shopRepositoryId" useGeneratedKeys="true">
+		insert into shopRepository(shopId ,repositoryId   )values(#{shop.shopId},#{repository.repositoryId})
+	</insert>
+	<delete id="deleteByIdProductCenterRepostory" parameterType="Integer">
+		delete from shopRepository where shopId =#{productId}
+	</delete>
+	<select id="findRepositoryProductId" parameterType="Integer" resultMap="returnRepository">
+		select 
+			sy.shopRepositoryId ,sy.repositoryId ,rp.repositoryId ,rp.shopNumber 
+		from 
+			shopRepository sy,repository rp 
+		where 
+			sy.repositoryId =rp.repositoryId and sy.shopId =#{productId}
+	</select>
+	<resultMap type="com.shop.pojo.ShopRepositoryPojo" id="returnRepository">
+		<id property="shopRepositoryId" column="shopRepositoryId"/>
+		<association property="repository" column="repositoryId" javaType="com.shop.pojo.RepositoryPojo">
+			<id property="repositoryId" column="repositoryId"/>
+			<result property="shopNumber" column="shopNumber"/>
+		</association>
+	</resultMap>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.ProductRepositoryMapper">
+	<insert id="addProductRepository" parameterType="com.shop.pojo.RepositoryPojo"
+		useGeneratedKeys="true" keyProperty="repositoryId">
+			insert into repository(shopNumber) values(#{shopNumber})
+		</insert>
+		<select id="queryRepository" parameterType="String" resultType="Integer">
+			select repositoryId   from repository where shopNumber=#{productRepo}
+		</select>
+</mapper>

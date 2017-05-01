@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <!-- 用户登录 -->
+  <servlet>
+    <servlet-name>loginAction</servlet-name>
+    <servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+   <servlet-mapping>
+    <servlet-name>loginAction</servlet-name>
+    <url-pattern>/login.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>VeryCode</servlet-name>
+    <servlet-class>com.shop.verycode.VeryCode</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VeryCode</servlet-name>
+    <url-pattern>/verycode.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>userMaAction</servlet-name>
+    <servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userMaAction</servlet-name>
+    <url-pattern>/userma.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>headInfoAction</servlet-name>
+    <servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  
+
+  <servlet-mapping>
+    <servlet-name>headInfoAction</servlet-name>
+    <url-pattern>/findHeadInfo.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>categoryAction</servlet-name>
+    <servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>categoryAction</servlet-name>
+    <url-pattern>/category.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>productAction</servlet-name>
+  	<servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>productAction</servlet-name>
+  	<url-pattern>/product.do</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>shopIndexAction</servlet-name>
+    <servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shopIndexAction</servlet-name>
+    <url-pattern>/index.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>goShopAction</servlet-name>
+  	<servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>goShopAction</servlet-name>
+  	<url-pattern>/goShop.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>orderAction</servlet-name>
+  		<servlet-class>com.shop.poxy.ServletToBeanProxy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>orderAction</servlet-name>
+  	<url-pattern>/order.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <filter>
+    <filter-name>jurisdictionFilter</filter-name>
+    <filter-class>filter.JurisdictionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>jurisdictionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>filter</filter-name>
+    <filter-class>filter.EncodFilter</filter-class>
+   	<init-param>
+   		<param-name>encoding</param-name>
+   		<param-value>UTF-8</param-value>
+   	</init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
+  
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/shop/resource/not-find-resource.jsp</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.NoSuchMethodException</exception-type>
+  	<location>/shop/resource/not-find-resource.jsp</location>
+  </error-page>
+</web-app>

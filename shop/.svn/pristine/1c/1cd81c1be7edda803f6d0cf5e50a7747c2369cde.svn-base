@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.OrderMapper">
+	<delete id="deleteByIdProdcut" parameterType="Integer">
+		delete from order_s where shopId =#{proId}
+	</delete>
+	
+	<insert id="saveOrder" keyProperty="orderId" 
+		parameterType="com.shop.pojo.OrderPojo" useGeneratedKeys="true">
+		insert into 
+			order_s(<include refid="ORDER_COLUMN"/>) 
+		values
+			(#{shopPojo.shopId},#{userPojo.userId},#{number},#{orderXqPojo.infoId})
+	</insert>
+	
+	<sql id="ORDER_COLUMN">
+		shopId,userId ,shopNumber,infoId 
+	</sql>
+	
+	<select id="findAllUserCount" resultType="com.shop.pojo.PagePojo">
+		select count(*) totalNumber from order_s
+	</select>
+	
+	<sql id="findAllOrder_column">order_s os,order_info oi,customer cu,raddress ra,shop sp,user u</sql>
+	<sql id="findAllOrder_column_where">
+			cu.customerId = oi.customerId and
+			os.infoId = oi.infoId and 
+			cu.radId = ra.radId and
+			sp.shopId = os.shopId and
+			u.userId= os.userId
+	</sql>
+	<select id="findAllOrderList" resultMap="refindAllOrderList" 
+			parameterType="com.shop.pojo.PagePojo">
+		select * from 
+			<include refid="findAllOrder_column"/> 
+		where 
+			<include refid="findAllOrder_column_where"/> 
+		 	<if test=' with!=null and with!="" '>
+				and orderId =#{with}
+			</if>
+			<if test=' nick!=null and nick!="" '>
+				and os.userId=u.userId and u.name like CONCAT(CONCAT('%',#{nick},'%'),'%')
+			</if> 
+			limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap type="com.shop.pojo.OrderPojo" id="refindAllOrderList">
+		<id property="orderId" column="orderId"/>
+		<result property="number" column="shopNumber"/>
+		<association property="orderXqPojo" column="infoId" javaType="com.shop.pojo.OrderXqPojo">
+			<id property="infoId" column="infoId"/>
+			<result property="infoTime" column="infoTime"/>
+			<result property="orderStatus" column="orderStatus"/>
+			<result property="orderPrice" column="orderPrice"/>
+			<result property="orderdesc" column="orderdesc"/>
+			<association property="customerPojo" column="customerId" javaType="com.shop.pojo.CustomerPojo">
+				<id property="customerId" column="customerId"/>
+				<result property="customerNick" column="customerNick"/>
+				<result property="customerTel" column="customerTel"/>
+				<association property="reRaddress" column="radId" javaType="com.shop.pojo.RaddressPojo">
+					<id property="radId" column="radId"/>
+					<result property="rad" column="rad"/>
+					<result property="radxq" column="radxq"/>
+				</association>
+			</association>
+		</association>
+		<association property="shopPojo" column="shopId" javaType="com.shop.pojo.ShopPojo">
+			<id property="shopId" column="shopId"/>
+			<result property="shopName" column="shopName"/>
+			<result property="shopPinpai" column="shopPinpai"/>
+			<result property="shopTxm" column="shopTxm"/>
+		</association>
+		<association property="userPojo" column="userId" javaType="com.shop.pojo.UserPojo">
+			<id property="userId" column="userId"/>
+			<result property="userName" column="userName"/>
+			<result property="name" column="name"/>
+			<result property="userSex" column="userSex"/>
+			<result property="userBithday" column="userBithday"/>
+			<result property="userTel" column="userTel"/>
+			<result property="userEmail" column="userEmail"/>
+		</association>
+	</resultMap>
+	
+	
+	<select id="findOrderCountById" parameterType="Integer" resultType="com.shop.pojo.PagePojo">
+		select count(*) totalNumber from  order_s where orderId =#{orderId}
+	</select>
+	<select id="findOrderByUser" parameterType="String" resultType="com.shop.pojo.PagePojo">
+			select count(*) totalNumber from order_s os,user u where os.userId  = u.userId  
+			and u.name like CONCAT(CONCAT('%',#{nick},'%'),'%')
+	</select>
+</mapper>

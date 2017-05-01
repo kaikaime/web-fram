@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<!-- com.shop.bean.UserBean -->
+<mapper namespace="com.shop.dao.UserMaMapper">
+	<select id="findUser" parameterType="com.shop.pojo.UserMaPojo"   resultType="com.shop.pojo.UserMaPojo">
+		select userMaName,userMaPass from user_ma where userMaName = #{userMaName} and userMaPass = #{userMaPass}
+	</select> 
+	<insert id="rigester" parameterType="com.shop.pojo.UserMaPojo">
+		insert into user_ma(userMaName ,userMaPass) values(#{userMaName},#{userMaPass})
+	</insert>
+	
+</mapper>

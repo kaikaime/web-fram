@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.ProductMapper">
+	<insert id="addProduct" parameterType="com.shop.pojo.ShopPojo" 
+		keyProperty="shopId" useGeneratedKeys="true" >
+		insert into shop(shopName,shopChildCategoryId,shopPinpai,shoTxm)
+		values(#{shopName},#{shopChildCategoryPojo.shopChildCategoryId},#{shopPinpai},#{shopTxm})
+	</insert>
+	
+	<select id="findAllUserCount" resultType="com.shop.pojo.PagePojo">
+		select count(*) totalNumber from shop
+	</select>
+	<select id="findAllUserList" parameterType="com.shop.pojo.PagePojo" resultMap="returnImg">
+		select sp.shopId ,sp.shopName ,sp.shopChildCategoryId ,sp.shopPinpai ,sp.shoTxm,ig.imgShopId ,ig.imgShopNick   from shop sp,imgShop ig
+			<where>
+				sp.shopId=ig.shopId
+			</where>
+		limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap type="com.shop.pojo.ShopPojo" id="returnImg">
+		<id property="shopId" column="shopId"/>
+		<result property="shopName" column="shopName"/>
+		<result property="shopPinpai" column="shopPinpai"/>
+		<result property="shopTxm" column="shoTxm"/>
+		<association property="imgShopPojo" column="shopId" javaType="com.shop.pojo.ImgShopPojo">
+			<id property="imgShopId" column="imgShopId"/>
+			<result property="imgshopNick" column="imgShopNick"/>
+		</association>
+	</resultMap>
+	
+	<!-- 删除数据 -->
+	<delete id="deleteByIdProduct" parameterType="Integer">
+		delete from shop 
+		<where>
+			shopId =#{productId}
+		</where>
+	</delete>
+	
+	<select id="findByIdProduct" parameterType="Integer" resultMap="returnShopPojo">
+			select 
+				sp.shopId ,sp.shopName,sp.shopPinpai ,sp.shoTxm,sp.shopChildCategoryId ,
+				sc.shopChildCategoryId ,sc.shopChildCategoryNick,sy.shopCategoryId ,sy.shopCategoryNick 
+			from shop sp,shopChildCategory sc,shopCategory sy where sp.shopChildCategoryId  =sc.shopChildCategoryId 
+				and sc.shopCategoryId =sy.shopCategoryId and sp.shopId =#{productId}
+	</select>
+	<resultMap type="com.shop.pojo.ShopPojo" id="returnShopPojo">
+		<id property="shopId" column="shopId"/>
+		<result property="shopName" column="shopName"/>
+		<result property="shopPinpai" column="shopPinpai"/>
+		<result property="shopTxm" column="shoTxm"/>
+		<association property="shopChildCategoryPojo" column="shopChildCategoryId " javaType="com.shop.pojo.ShopCategoryPojo">
+			<id column="shopCategoryId " property="shopCategoryId "/>
+			<result column="shopCategoryNick " property="shopCategoryNick "/>
+		</association>
+	</resultMap>
+	
+	<update id="updateShop" parameterType="com.shop.pojo.ShopPojo">
+		update shop
+			<set>
+				shopName=#{shopName},
+				shopPinpai=#{shopPinpai},
+				shoTxm=#{shopTxm},
+				shopChildCategoryId=#{shopChildCategoryPojo.shopChildCategoryId}
+			</set>
+			<where>
+				shopId=#{shopId}
+			</where>
+	</update>
+	
+	<select id="findAllProductInfo" resultType="com.shop.pojo.TodaysDealPojo">
+		select 
+			im.imgShopId imgShopId ,im.imgShopNick imgShopNick ,sp.shopId shopId,
+			sp.shopName shopName,sp.shopPinpai shopPinpai,sp.shoTxm shoTxm
+		from shop sp,imgShop im where sp.shopId =im.shopId 
+	</select>
+	
+	
+	<select id="findAllProdcutId" parameterType="Integer" resultType="Integer">
+		select sp.shopId  from 
+			shop sp,shopChildCategory sy 
+		where 
+			sp.shopChildCategoryId  =sy.shopChildCategoryId 
+		and 
+			sy.shopChildCategoryId =#{chiId}
+	</select>
+</mapper>
+

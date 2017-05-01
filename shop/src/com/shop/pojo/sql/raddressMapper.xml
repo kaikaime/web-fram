@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.RaddressMapper">
+	<select id="findUserOrderAddress" parameterType="Integer" resultMap="returnRaddressPojo">
+		select * from raddress rd,customer cu where rd.radId =cu.radId and rd.userId =#{userId}
+	</select>
+	<resultMap type="com.shop.pojo.RaddressPojo" id="returnRaddressPojo">
+		<id property="radId" column="radId"/>
+		<result property="rad" column="rad"/>
+		<result property="radxq" column="radxq"/>
+		<collection property="list" column="radId" ofType="com.shop.pojo.CustomerPojo">
+			<id property="customerId" column="customerId"/>
+			<result property="customerTel" column="customerTel"/>
+			<result property="customerNick" column="customerNick"/>
+		</collection>
+	</resultMap>
+	<insert id="addOrderAdd" parameterType="com.shop.pojo.RaddressPojo" 
+	useGeneratedKeys="true" keyProperty="radId">
+		insert into raddress(rad,radxq,userId)  values(#{rad},#{radxq},#{userPojo.userId})
+	</insert>
+	
+	<update id="updateOrderRadd" parameterType="com.shop.pojo.RaddressPojo">
+		update raddress set rad =#{rad},radxq=#{radxq} where radId=#{radId}
+	</update>
+</mapper>
+

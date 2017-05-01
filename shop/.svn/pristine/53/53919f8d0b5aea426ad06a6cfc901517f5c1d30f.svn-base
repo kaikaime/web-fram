@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+
+<mapper namespace="com.shop.dao.ShopCategoryMapper">
+	<!-- 添加之前检查当前的主键是否存在 -->
+	<select id="queryShopCategoryId" parameterType="String" resultType="Integer">
+		select sp.shopCategoryId  from shopcategory sp 
+			<where>
+				sp.shopCategoryNick=#{shopCategoryNick}
+			</where>
+	</select>
+	<!-- 添加商品大分类 -->
+	<insert id="addShopCategory" parameterType="com.shop.pojo.ShopCategoryPojo"
+		keyProperty="shopCategoryId" useGeneratedKeys="true">
+		insert into 
+			shopcategory(shopCategoryNick) 
+		value(#{shopCategoryNick})
+	</insert>
+	
+	<delete id="deleteShopParentCategory" parameterType="int">
+		delete from shopCategory
+			<where>
+				shopCategoryId=#{shopCategoryId}
+			</where>
+	</delete>
+	
+	
+	
+	
+	
+	<!-- 获取分类总数 -->
+	<select id="findAllUserCount" resultType="com.shop.pojo.PagePojo">
+		select count(*) totalNumber from shopcategory
+	</select>
+	
+	
+	
+	
+	
+	<!-- 获取所有的数据 -->
+	<select id="findAllUserList" parameterType="com.shop.pojo.PagePojo" resultMap="resultShopCategoryPojo">
+		select 
+			<include refid="columnCategoryAndChildcategoryListAlias"></include>
+		from shopcategory sp,shopchildcategory sc
+		 	<where>
+		 		sp.shopCategoryId=sc.shopCategoryId
+		 	</where>
+		 	<if test="isLimit==1">
+		 			limit #{startIndex},#{pageSize}
+		 	</if>
+		 		
+		
+	</select>
+	<resultMap type="com.shop.pojo.ShopCategoryPojo" id="resultShopCategoryPojo">
+		<id property="shopCategoryId" column="shopCategoryId"/>
+		<result property="shopCategoryNick" column="shopCategoryNick"/>
+		<collection property="shopChildCategoryPojo" column="shopCategoryId" ofType="com.shop.pojo.ShopChildCategoryPojo">
+			<id property="shopChildCategoryId" column="shopChildCategoryId"/>
+			<result property="shopChildCategoryNick" column="shopChildCategoryNick"/>
+		</collection>
+	</resultMap>
+	<sql id="columnCategoryAndChildcategoryListAlias">
+		sp.shopcategoryId,sp.shopcategoryNick,sc.shopchildcategoryId,sc.shopchildcategoryNick,sc.shopcategoryId
+	</sql>
+	
+	
+	
+	<update id="updateShopCategoryParent" parameterType="com.shop.pojo.ShopCategoryPojo">
+		update shopCategory 
+			<set>
+				shopCategoryNick =#{shopCategoryNick}
+			</set>
+			<where>
+				shopCategoryId =#{shopCategoryId }
+			</where>
+	</update>
+	
+	
+	
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+
+<mapper namespace="com.shop.dao.ShopCategoryChildMapper">
+	<!-- 添加之前检查当前的主键是否存在 -->
+	<select id="queryShopChildCategoryId" parameterType="com.shop.pojo.ShopChildCategoryPojo" resultType="Integer">
+		select sp.shopChildCategoryId from shopChildCategory sp 
+			<where>
+				    sp.shopCategoryId = #{shopCategoryPojo.shopCategoryId} and
+				    sp.shopChildCategoryNick =#{shopChildCategoryNick}
+			</where>
+	</select>
+	
+	<!-- 添加商品小分类 -->
+	<insert id="addShopCategoryChild" parameterType="com.shop.pojo.ShopChildCategoryPojo">
+		insert into 
+			shopChildCategory(shopChildCategoryNick,shopCategoryId) 
+		value(#{shopChildCategoryNick},#{shopCategoryPojo.shopCategoryId})
+	</insert>
+	
+	
+	
+	<select id="findByIdChildShopCategory" parameterType="int" resultMap="findByIdShopChildCategoryPojo">
+		select * from shopChildCategory 
+			<where>
+				shopChildCategoryId=#{shopChildCategoryId}
+			</where>
+	</select>
+	<resultMap type="com.shop.pojo.ShopChildCategoryPojo" id="findByIdShopChildCategoryPojo">
+			<id property="shopChildCategoryId" column="shopChildCategoryId"/>
+			<result property="shopChildCategoryNick" column="shopChildCategoryNick"/>
+			<association  property="shopCategoryPojo" column="shopCategoryId" javaType="com.shop.pojo.ShopCategoryPojo">
+				<id property="shopCategoryId" column="shopCategoryId"/>
+				<result property="shopCategoryNick" column="shopCategoryNick"/>
+			</association>
+	</resultMap>
+	
+	<update id="updateShopCategoryChild" parameterType="com.shop.pojo.ShopChildCategoryPojo">
+		update shopChildCategory 
+			<set>
+				shopCategoryId  =#{shopCategoryPojo.shopCategoryId},
+				shopChildCategoryNick =#{shopChildCategoryNick }
+			</set>
+			<where>
+				shopChildCategoryId =#{shopChildCategoryId }
+			</where>
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="deleteShopChildCategory" parameterType="int">
+		delete from shopChildCategory
+			<where>
+				shopChildCategoryId =#{shopChildCategoryId}
+			</where>
+	</delete>
+	
+	<!-- 通过名字查找 -->
+	<select id="findAllChildCategory" parameterType="String" resultType="com.shop.pojo.ShopChildCategoryPojo">
+		select 
+			sp.shopChildCategoryId shopChildCategoryId,
+			sp.shopChildCategoryNick shopChildCategoryNick
+		from shopChildCategory sp,shopCategory sc
+			<where>
+				sp.shopCategoryId=sc.shopCategoryId and
+				sc.shopCategoryNick=#{findProdcutNick}
+			</where>
+	</select>
+	
+	<select id="findChildCategoryId" parameterType="String" resultType="Integer">
+		select shopChildCategoryId  from shopChildCategory where shopChildCategoryNick =#{productChild}
+	</select>
+	
+	<select id="findByIdProduct" parameterType="Integer" resultType="com.shop.pojo.ShopChildCategoryPojo">
+		select 
+			sp.shopChildCategoryId shopChildCategoryId,sp.shopChildCategoryNick shopChildCategoryNick 
+		from 
+			shopChildCategory sp,shop so
+		where 
+			sp.shopChildCategoryId =so.shopChildCategoryId
+		and 
+		    so.shopId =#{shopId}
+	</select>
+	
+	<select id="findAllCateChildId" parameterType="Integer" resultType="Integer">
+		select sc.shopChildCategoryId  from 
+			shopChildCategory sc,shopCategory sy 
+		where 
+			sc.shopCategoryId =sy.shopCategoryId
+		and 
+			sy.shopCategoryId=#{shopCategoryId}
+	</select>
+</mapper>

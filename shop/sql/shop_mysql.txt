@@ -1,0 +1,188 @@
+/*
+	管理员
+*/
+
+create table user_ma
+(
+	userMaId  Integer primary key AUTO_INCREMENT,
+	userMaName varchar(20),
+	userMaPass varchar(32)
+);
+/*
+用户管理
+*/
+create table user
+(
+	userId Integer primary key AUTO_INCREMENT,
+	userName varchar(20),
+	name varchar(20),
+	userPass varchar(32),
+	userSex char check(userSex in('男','女')),
+	userBithday date,
+	userTel varchar(11),
+	userEmail varchar(30)
+);
+/*
+	送货地址
+*/
+create table sendAddress
+(
+	addressId Integer primary key AUTO_INCREMENT,
+	address varchar(100),
+	userId Integer references user(userId)
+);
+
+/*
+	图像
+*/
+create table imgHead
+(
+	imgHeadId Integer primary key AUTO_INCREMENT,
+	imgHeadUrl varchar(100),
+	userId Integer references user(userId)
+);
+
+/*
+商品类管理
+*/
+create table shopCategory
+(
+	shopCategoryId Integer primary key AUTO_INCREMENT,
+	shopCategoryNick varchar(20)
+);
+
+/*
+	商品子类管理
+
+*/
+create table shopChildCategory
+(
+	shopChildCategoryId Integer primary key AUTO_INCREMENT,
+	shopCategoryId Integer references shopCategory(shopCategoryId ),
+	shopChildCategoryNick varchar(20)
+);
+
+
+
+/*
+商品图片
+*/
+create table imgShop
+(
+	imgShopId Integer primary key AUTO_INCREMENT,
+	shopId  Integer references shop(shopId),
+	imgShopNick varchar(100)
+);
+/*商品价格*/
+create table price
+(
+	priceId Integer primary key AUTO_INCREMENT,
+	price varchar(10)
+);
+
+
+
+////////////////////////////////////////////////////////
+
+
+/*
+	商品表
+*/
+create table shop
+(
+	shopId Integer primary key AUTO_INCREMENT,
+	shopName varchar(40),
+	shopChildCategoryId Integer references shopChildCategory(shopChildCategoryId ),
+	shopPinpai varchar(50),
+	shoTxm varchar(50)
+);
+
+
+/*商品价格中间表*/
+create table shopPrice
+(
+	shopPriceId Integer primary key AUTO_INCREMENT,
+	shopId Integer references shop(shopId),
+	priceId Integer references price(priceId)
+);
+
+
+//////////////////////////////////////////////////////////
+
+
+
+/*
+库存
+*/
+create table repository
+(
+	repositoryId Integer primary key AUTO_INCREMENT,
+	shopNumber varchar(20)
+);
+
+
+/*商品仓库中间表*/
+create table shopRepository
+(
+	shopRepositoryId Integer primary key AUTO_INCREMENT,
+	shopId Integer references shop(shopId),
+	repositoryId Integer references repository(repositoryId)
+);
+
+
+/*
+	订单表：订单编号、下单时间、提交人、订单类型、订单状态[待发货-已发货等]、订单金额、收货人ID[来至客户信息表]、
+	订单商品信息记录表：订单编号、商品ID、
+*/
+/*订单表*/
+create table order_info
+(
+	infoId Integer primary key AUTO_INCREMENT,
+	infoTime date,
+	customerId Integer  references  customer(customerId ),
+	orderStatus varchar(2),
+	radId Integer  references  raddress(radId),
+	orderPrice varchar(5),
+	orderdesc varchar(1000),
+	
+	
+)
+
+create table order_s
+(	orderId Integer primary key AUTO_INCREMENT,
+	infoId Integer references  order_info(infoId),
+	shopId Integer  references  shop(shopId),
+	userId Integer  references  user(userId),
+	shopNumber varchar(5)
+)
+
+create table customer
+(
+	customerId Integer primary key AUTO_INCREMENT,
+	customerNick varchar(50),
+	customerTel varchar(20),
+	radId Integer references  raddress(radId )
+)
+
+/*
+收货地址
+*/
+create table raddress
+(
+	radId Integer primary key AUTO_INCREMENT,
+	rad varchar(100),
+	userId Integer references  user(userId),
+	radxq varchar(200)
+)
+
+
+delete from imgshop;
+delete from shopprice;
+delete from shoprepository;
+delete from price;
+delete from repository;
+delete from shop;
+
+
+
+

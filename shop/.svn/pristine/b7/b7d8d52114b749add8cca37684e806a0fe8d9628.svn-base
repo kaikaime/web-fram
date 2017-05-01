@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.ProductPriceMapper">
+	<insert id="addProductPrice" parameterType="com.shop.pojo.PricePojo"
+		useGeneratedKeys="true" keyProperty="priceId">
+			insert into price(price) values(#{price})
+		</insert>
+	<select id="queryProductPrice" parameterType="String" resultType="Integer">
+		select priceId from price where price=#{productPrice}
+	</select>
+</mapper>

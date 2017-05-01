@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<mapper namespace="com.shop.dao.ProductCenterPriceMapper">
+	<insert id="addProductCenterPrice" parameterType="com.shop.pojo.ShopPricePojo" 
+	keyProperty="shopPriceId" useGeneratedKeys="true">
+		insert into shopPrice(shopId  ,priceId  )values(#{shop.shopId},#{price.priceId})
+	</insert>
+	<delete id="deleteByIdProductCenterPrice" parameterType="Integer">
+		delete from shopPrice where shopId =#{productId}
+	</delete>
+	<select id="findPriceByProductId" parameterType="Integer" resultMap="returnShopPrice">
+		select  sr.shopPriceId ,pr.priceId ,pr.price from price pr,shopPrice sr 
+		where 
+			sr.priceId =pr.priceId 
+		and sr.shopId = #{productId}
+	</select>
+	<resultMap type="com.shop.pojo.ShopPricePojo" id="returnShopPrice">
+		<id property="shopPriceId " column="shopPriceId "/>
+		<association property="price" column="priceId " javaType="com.shop.pojo.PricePojo">
+			<id property="priceId" column="priceId"/>
+			<result property="price" column="price"/>
+		</association>
+	</resultMap>
+	
+	<update id="updateProductCenterPrice" parameterType="com.shop.pojo.ShopPricePojo" >
+		update shopPrice set priceId =#{price.priceId} where shopId =#{shop.shopId}
+	</update>
+	
+	<!-- 查询价格 -->
+	<select id="findPriceByProduct" parameterType="com.shop.pojo.TodaysDealPojo" resultType="com.shop.pojo.TodaysDealPojo">
+		select 
+			pri.price price ,pri.priceId priceId 
+		from 
+			shopPrice spr,price pri  
+		where 
+			pri.priceId =spr.priceId 
+	    and 
+	    	spr.shopId =#{shopId};
+	</select>
+</mapper>

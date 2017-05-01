@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+
+<mapper namespace="com.shop.dao.UserHeadImgMapper">
+	<insert id="addUserHeadImg" parameterType="com.shop.pojo.UserHeadImgPojo">
+		insert into imghead(imgHeadUrl ,userId) values(#{userHeadImgPath},#{userId})
+	</insert>
+	<update id="updateUserHeadImg" parameterType="com.shop.pojo.UserHeadImgPojo">
+		update imghead set imgHeadUrl = #{userHeadImgPath} where userId=#{userId}
+	</update>
+	<delete id="deleteByIdUserHeadImg" parameterType="int">
+		delete from imghead 
+		<where>
+			userId=#{userId}
+		</where>
+	</delete>
+</mapper>

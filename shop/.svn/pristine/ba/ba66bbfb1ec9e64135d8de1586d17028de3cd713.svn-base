@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- <typeAliases>
+		<package name="com.shop.pojo"/>
+	</typeAliases> -->
+	 <mappers>
+		<mapper resource="com/shop/pojo/sql/userMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/userMaMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/userHeadImgMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/shopCategoryMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/shopCategoryChildMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/productImgMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/productMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/productPriceMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/productRepositoryMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/productCenterPriceMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/productCenterRepositoryMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/OrderMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/AddressMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/raddressMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/customerMapper.xml"/>
+		<mapper resource="com/shop/pojo/sql/OrderXqMapper.xml"/>
+	</mappers>
+</configuration>

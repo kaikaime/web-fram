@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace必须是接口的全类名  -->
+<!-- com.shop.bean.UserBean -->
+<mapper namespace="com.shop.dao.UserMapper">
+	<!-- 添加用户  
+		keyProperty="userId" useGeneratedKeys="true"，把当前新增加的主键放入到属性中去
+		<selectKey keyProperty="userId" resultType="int" order="AFTER">
+			  		select last_insert_id() as userId
+		 </selectKey> 把新增加的主键放入到属性中去，使用oracle中的序列时，用此方法易懂一些
+	-->
+	<insert id="addUser" parameterType="com.shop.pojo.UserPojo" keyProperty="userId" useGeneratedKeys="true" >
+				insert into user
+					(<include refid="Insert_User_Column"/>,userPass)
+				values (#{userName},#{name},#{userSex},#{userBithday},#{userTel},#{userEmail},#{userPass})
+	</insert>
+	
+	
+	
+	<!-- 查询用户Id -->
+	<select id="findUserId" parameterType="String" resultType="int">
+		select userId userId from user where userName=#{userName}
+	</select>
+	
+	<!-- 獲取所有用戶數量 -->
+	<select id="findAllUserCount"  resultType="com.shop.pojo.PagePojo" >
+		select count(*) totalNumber from user
+	</select>
+	
+	
+	<!-- 获取所有的用户-->
+	<select id="findAllUserList" parameterType="com.shop.pojo.PagePojo"  resultType="com.shop.pojo.UserPojo">
+		select 
+			<include refid="Select_User_Column" /> 
+		from user limit #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 通过用户的Id进行查询用户 -->
+	<select id="findByIdUser" parameterType="int" resultType="com.shop.pojo.UserPojo">
+			select 
+				<include refid="Select_User_Column" />
+			from user
+				<where>
+				  userId=#{userId}
+				</where>
+	</select> 
+	
+	<!-- 更新用户 -->
+	<update id="updateByIdUser" parameterType="com.shop.pojo.UserPojo">
+		update user
+			<set>
+				userName=#{userName},
+				name=#{name},
+				userSex =#{userSex},
+				userBithday=#{userBithday},
+				userTel=#{userTel},
+				userEmail=#{userEmail},
+				userPass =#{userPass}
+			</set>
+			<where>
+				userId=#{userId}
+			</where>
+	</update>
+	
+	<!-- 删除用户 -->
+	<delete id="deleteByIdUser" parameterType="int">
+		delete from user 
+		<where>
+			userId=#{userId}
+		</where>
+	</delete>
+	
+	
+	<sql id="Select_User_Column">
+		userId userId,userName userName,name name,userSex userSex,userBithday userBithday,userTel userTel,userEmail userEmail
+	</sql>
+	
+	<sql id="Insert_User_Column">
+		userName,name,userSex,userBithday,userTel,userEmail
+	</sql>
+	
+	
+	<select id="findAllUserAdd" parameterType="Integer" resultMap="returnUserAddress">
+		select * from sendAddress sd ,user u where sd.userId =u.userId  and u.userId =#{userId}
+	</select>
+		<resultMap type="com.shop.pojo.UserPojo" id="returnUserAddress">
+			<id property="userId" column="userId" />
+			<result property="userName" column="userName"/>
+			<result property="name" column="name"/>
+			<result property="userSex" column="userSex"/>
+			<result property="userBithday" column="userBithday"/>
+			<result property="userTel" column="userTel"/>
+			<result property="userEmail" column="userEmail"/>
+			<collection property="list" column="userId"  ofType="com.shop.pojo.RaddressPojo" >
+				<id property="radId" column="addressId" />
+				<result property="rad" column="address"/>
+			</collection> 
+		</resultMap>
+</mapper>
