@@ -1,0 +1,92 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="${pageContext.request.contextPath}/jquery/jquery-3.1.1.js"></script>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/violation.css" />
+		<script>
+			$(function(){
+				$("#check-all").click(function(){
+					$(":checkbox").attr("checked",$(this).is(":checked"));
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="div-body">
+			<div class="div-head">
+				<label class="div-leable">违规纪录</label>
+				<div class="div-tiaojian">
+					<input class="text-nick" type="text" placeholder="姓名/宿舍" />
+					<input type="button" class="btn-nick" value="搜索" />
+					<input type="button" class="btn-nick" value="添加纪录" />
+				</div>
+			</div>
+			
+			<div class="div-table-body">
+				<table cellpadding="0" cellspacing="0">
+					<tr  height="30" class="table-tr">
+						<th width="70">
+							<input type="checkbox" id="check-all">&nbsp;全选</input>
+						</th>
+						<th>姓名</th>
+						<th>系部</th>
+						<th>班级</th>
+						<th>宿舍</th>
+						<th>电话</th>
+						<th>违规时间</th>
+						<th>违规描述</th>
+						<th></th>
+					</tr>
+					<tr height="30" class="table-tr">
+						<td width="100">
+							<input type="checkbox">&nbsp;选择</input>
+						</td>
+						<td>姓名</td>
+						<td>系部</td>
+						<td>班级</td>
+						<td>宿舍</td>
+						<td>联系方式</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>
+							<a href="javascript:void(0);">修改</a>&nbsp;
+							<a href="javascript:void(0);">删除</a>
+						</td>
+					</tr>
+					<tr height="30" class="table-tr">
+						<td width="100">
+							<input type="checkbox">&nbsp;选择</input>
+						</td>
+						<td>姓名</td>
+						<td>系部</td>
+						<td>班级</td>
+						<td>宿舍</td>
+						<td>联系方式</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>
+							<a href="javascript:void(0);">修改</a>&nbsp;
+							<a href="javascript:void(0);">删除</a>
+						</td>
+					</tr>
+				</table>
+				<div class="fenye-div">
+				<center class="div-center">显示第<span>1</span>至<span>2</span>项纪录，共<span>2</span>页</center>
+					<div class="div-left-footer">
+						<label class="div_up">上一页</label>
+						<span class="div_center">1</span>
+						<label class="div_down">下一页</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,114 @@
+*{
+				padding: 0px;
+				margin: 0px;
+			}
+			.div-body-all{
+				width: 1300px;
+				height: 600px;
+				margin: 0px auto;
+				margin-top: 20px;
+			}
+			.div-body-title{
+				width: 1300px;
+				height: 80px;
+			}
+			.div-body-title-span{
+				width: 200px;
+				background-color:blue;
+				height: 80px;
+				text-align: center;
+				color:#fff;
+				font-size: 20px;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				line-height: 80px;
+				margin: 0px auto;
+			}
+			.div-body-table-all{
+				width: 1300px;
+				height: 480px;
+			}
+			.div-body-left-table{
+				margin-left: 70px;
+				width: 550px;
+				height: 480px;
+				float: left;
+				border: 1px solid blue;
+			}
+			.div-body-right-table{
+				float: left;
+				margin-left: 50px;
+				width: 550px;
+				height: 480px;
+				border: 1px solid blue;
+			}
+			.table-left-body{
+				width: 300px;
+				height: 400px;
+				background-color: #FFFFFF;
+				margin-left: 240px;
+				margin-top: 20px;
+			}
+			.table-right-body{
+				width: 450px;
+				height: 400px;
+				margin-top: 20px;
+				background-color: #FFFFFF;
+				margin-left: 10px;
+			}
+			.div-label-flag{
+				color: red;
+			}
+			.input-content,.input-conent-add,select{
+				margin: 0px auto;
+				
+				border-right-style: double;
+				border: blue solid 1px;
+			}
+			.input-content{
+				width: 190px;
+				height: 20px;
+			}
+			.input-conent-add{
+				width: 130px;
+				height: 20px;
+			}
+			
+			.div-right-select{
+				width: 150px;
+			}
+			.div_tr_textarea{
+				width: 180px;
+				height: 80px;
+				border: 1px solid blue;
+			}
+			.div-label-a-title{
+				font-size: 20px;
+				color: #000000;
+				font-weight: bold;
+			}
+			.div-content-footer-body{
+				clear: both;
+				width: 700px;
+				height: 168px;
+				
+				margin:0px auto;
+			}
+			.div-content-button{
+				border-bottom-right-radius: 5px;
+				border-bottom-left-radius: 5px;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				border-right-style: double;
+				border: #C5DBEC solid 1px;
+				width: 250px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				margin: 0px auto;
+				background-color:blue;
+				color: #FFFFFF;
+				font-size: 20px;
+			}

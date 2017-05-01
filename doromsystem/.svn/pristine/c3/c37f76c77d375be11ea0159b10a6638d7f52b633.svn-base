@@ -1,0 +1,1 @@
+ FROM Violation as vi join fetch vi.student as stu join fetch stu.room as rm

@@ -1,0 +1,55 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/student.css" />
+	</head>
+	<body>
+		<div class="div-body">
+			<div class="div-head">
+				宿舍学生
+			</div>
+			<div class="div-table-body">
+				<table cellpadding="0" cellspacing="0">
+					<tr height="30" class="table-tr">
+						<td width="100">302室</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+					</tr>
+					<tr height="30">
+						<td width="100">302室</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+						<td>乘凉</td>
+					</tr>
+				</table>
+				<div class="fenye-div">
+				<center class="div-center">显示第<span>1</span>至<span>2</span>项纪录，共<span>2</span>页</center>
+					<div class="div-left-footer">
+						<label class="div_up">上一页</label>
+						<span class="div_center">1</span>
+						<label class="div_down">下一页</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

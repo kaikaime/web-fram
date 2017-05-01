@@ -1,0 +1,72 @@
+package com.system.pojos;
+
+import java.util.Date;
+
+/**
+ * Health entity. @author MyEclipse Persistence Tools
+ */
+
+public class Health implements java.io.Serializable {
+
+	// Fields
+
+	@Override
+	public String toString() {
+		return "Health [healthId=" + healthId + ", room=" + room
+				+ ", healthDesc=" + healthDesc + ", healthTime=" + healthTime
+				+ "]";
+	}
+
+	private Integer healthId;
+	private Room room;
+	private String healthDesc;
+	private Date healthTime;
+
+	// Constructors
+
+	/** default constructor */
+	public Health() {
+	}
+
+	/** full constructor */
+	public Health(Room room, String healthDesc, Date healthTime) {
+		this.room = room;
+		this.healthDesc = healthDesc;
+		this.healthTime = healthTime;
+	}
+
+	// Property accessors
+
+	public Integer getHealthId() {
+		return this.healthId;
+	}
+
+	public void setHealthId(Integer healthId) {
+		this.healthId = healthId;
+	}
+
+	public Room getRoom() {
+		return this.room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public String getHealthDesc() {
+		return this.healthDesc;
+	}
+
+	public void setHealthDesc(String healthDesc) {
+		this.healthDesc = healthDesc;
+	}
+
+	public Date getHealthTime() {
+		return this.healthTime;
+	}
+
+	public void setHealthTime(Date healthTime) {
+		this.healthTime = healthTime;
+	}
+
+}

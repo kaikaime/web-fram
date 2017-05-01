@@ -1,0 +1,57 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/addvication.css" />
+	</head>
+	<body>
+		<center>
+			<div class="div-body">
+			<button class="div-btn">添加请假记录</button>
+			<form>
+				<div class="div-nick">
+					<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick">
+					<label>院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;部:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick">
+					<label>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick">
+					<label>宿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;舍:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick">
+					<label>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick">
+					<label>开始时间:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick">
+					<label>结束时间:</label>&nbsp;
+					<input type="text" class="input-text-nick" />
+				</div>
+				<div class="div-nick ssMenu">
+					<label class="div-ssm">请假原因:</label>&nbsp;
+					<textarea class="div-textarea"></textarea>
+				</div>
+			</div>
+		</form>
+		</center>
+		
+	</body>
+</html>
+
+

@@ -1,0 +1,1 @@
+From Room as room join fetch room.student as stu

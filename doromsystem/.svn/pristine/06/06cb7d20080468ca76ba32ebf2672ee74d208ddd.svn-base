@@ -1,0 +1,63 @@
+package com.system.pojos;
+
+/**
+ * Acct entity. @author MyEclipse Persistence Tools
+ */
+
+public class Acct implements java.io.Serializable {
+
+	// Fields
+
+	private Integer accId;
+	private Man man;
+	private String accNumber;
+	private String accPass;
+
+	// Constructors
+
+	/** default constructor */
+	public Acct() {
+	}
+
+	/** full constructor */
+	public Acct(Man man, String accNumber, String accPass) {
+		this.man = man;
+		this.accNumber = accNumber;
+		this.accPass = accPass;
+	}
+
+	// Property accessors
+
+	public Integer getAccId() {
+		return this.accId;
+	}
+
+	public void setAccId(Integer accId) {
+		this.accId = accId;
+	}
+
+	public Man getMan() {
+		return this.man;
+	}
+
+	public void setMan(Man man) {
+		this.man = man;
+	}
+
+	public String getAccNumber() {
+		return this.accNumber;
+	}
+
+	public void setAccNumber(String accNumber) {
+		this.accNumber = accNumber;
+	}
+
+	public String getAccPass() {
+		return this.accPass;
+	}
+
+	public void setAccPass(String accPass) {
+		this.accPass = accPass;
+	}
+
+}

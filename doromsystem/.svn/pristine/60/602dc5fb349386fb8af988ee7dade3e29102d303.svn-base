@@ -1,0 +1,18 @@
+package com.system.service;
+
+import java.util.List;
+
+import com.system.bean.ExcellentBean;
+import com.system.bean.HealthBean;
+import com.system.callback.FenYeAllDataCallBack;
+
+public interface IRoomHealthService {
+
+	 String findAllService(String pageId,final FenYeAllDataCallBack<HealthBean> fenye);
+
+	String deleteById(String healthId, String markId, String healthStateId,
+			FenYeAllDataCallBack<HealthBean> fenYeAllDataCallBack);
+
+	
+
+}

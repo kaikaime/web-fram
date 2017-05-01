@@ -1,0 +1,7 @@
+select rid.ridgId, rid.ridgNick,room.roomId,room.roomNick,hls.stateId,hls.state,hls.stateDesc ,hls.stateTime,hl.healthId,hl.healthDesc,hl.healthTime,mk.rmId,mark.markId,mark.markNumber,mark.markDesc,mark.markTime from Ridgepole as rid,Room as room ,Healthstate as hls,
+Health as hl,Roommark as mk,Mark as mark
+
+
+where rid.ridgId=room.ridgepole.ridgId and room.roomId=hls.room.roomId and room.roomId = hl.room.roomId
+
+and mk.room.roomId=room.roomId and mk.mark.markId=mark.markId 

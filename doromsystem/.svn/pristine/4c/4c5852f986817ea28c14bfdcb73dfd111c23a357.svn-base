@@ -1,0 +1,11 @@
+package com.system.service;
+
+import com.system.bean.HealthBean;
+import com.system.callback.FenYeAllDataCallBack;
+
+public interface IVactionService {
+
+	String findAllService(String pageId,
+			FenYeAllDataCallBack<HealthBean> fenYeAllDataCallBack);
+
+}

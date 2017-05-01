@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	 <!-- 从properties中获取数据源 -->
+	 <context:property-placeholder 
+			location="classpath:db.properties" 
+			file-encoding="utf-8" ignore-resource-not-found="true" />
+	
+	<!-- 配置数据源 -->		
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" >
+		<property name="jdbcUrl" value="${hibernate.jdbcUrl}" />
+		<property name="driverClass" value="${hibernate.driverClass}" />
+		<property name="user" value="${hernate.user}" />
+		<property name="password" value="${hibernate.password}" />
+		<property name="testConnectionOnCheckin" value="${jdbc.c3p0.testConnectionOnCheckin}" />
+		<property name="testConnectionOnCheckout" value="${jdbc.c3p0.testConnectionOnCheckout}" />
+		<property name="idleConnectionTestPeriod" value="${jdbc.c3p0.idleConnectionTestPeriod}" />
+		<property name="initialPoolSize" value="${jdbc.c3p0.initialPoolSize}" />
+		<property name="minPoolSize" value="${jdbc.c3p0.minPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.c3p0.maxPoolSize}" />
+		<property name="maxIdleTime" value="${jdbc.c3p0.maxIdleTime}" />
+	</bean>  
+	 
+	<!-- 配置Hiberante的SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"  >
+ 		<property name="dataSource" ref="dataSource"></property>
+ 		<!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"></property> -->
+		<property name="mappingLocations" value="classpath:com/system/hbm/*.hbm.xml"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			</props>
+		</property>
+	</bean> 
+	
+	 <!-- 配置事务异常封装 -->
+	 <bean id="persistenceExceptionTranslationPostProcessor"
+        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" ></bean>
+  
+        
+	<!-- 配置hibernate事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 使用注解配置事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
+	<bean id="HqlDAO" class="com.system.hqldao.impl.HqlFenYeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="IAcctDAOImpl" class="com.system.daos.impl.IAcctDAOImpl" p:sessionFactory-ref="sessionFactory" />
+	
+	<bean id="IHealthDAOImpl" class="com.system.daos.impl.IHealthDAOImpl" p:sessionFactory-ref="sessionFactory" />
+	
+	<bean id="IMarkDAOImpl" class="com.system.daos.impl.IMarkDAOImpl" p:sessionFactory-ref="sessionFactory" />
+	
+	<bean id="IViolationDAOImpl" class="com.system.daos.impl.IViolationDAOImpl" p:sessionFactory-ref="sessionFactory" />
+	
+	<bean id="IVactionDAOImpl" class="com.system.daos.impl.IVactionDAOImpl" p:sessionFactory-ref="sessionFactory" />
+	
+	<bean id="YarddeptDAO" class="com.system.dao.YarddeptDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="StudentDAO" class="com.system.dao.StudentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="RoomDAO" class="com.system.dao.RoomDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ViolationDAO" class="com.system.dao.ViolationDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="VactionDAO" class="com.system.dao.VactionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="HealthstateDAO" class="com.system.dao.HealthstateDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="RoommarkDAO" class="com.system.dao.RoommarkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ClasstDAO" class="com.system.dao.ClasstDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="RidgepoleDAO" class="com.system.dao.RidgepoleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ManDAO" class="com.system.dao.ManDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MarkDAO" class="com.system.dao.MarkDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AcctDAO" class="com.system.dao.AcctDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ExcellentDAO" class="com.system.dao.ExcellentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="HealthDAO" class="com.system.dao.HealthDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>

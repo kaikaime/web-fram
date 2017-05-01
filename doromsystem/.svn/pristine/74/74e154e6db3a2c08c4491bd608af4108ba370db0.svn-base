@@ -1,0 +1,86 @@
+package com.system.pojos;
+
+import java.util.Date;
+
+/**
+ * Excellent entity. @author MyEclipse Persistence Tools
+ */
+
+public class Excellent implements java.io.Serializable {
+
+	// Fields
+
+	private Integer excellentId;
+	private Ridgepole ridgepole;
+	private String excellentState;
+	private Date excellentTime;
+	private String excellentDesc;
+	private String excellentLack;
+
+	// Constructors
+
+	/** default constructor */
+	public Excellent() {
+	}
+
+	/** full constructor */
+	public Excellent(Ridgepole ridgepole, String excellentState,
+			Date excellentTime, String excellentDesc, String excellentLack) {
+		this.ridgepole = ridgepole;
+		this.excellentState = excellentState;
+		this.excellentTime = excellentTime;
+		this.excellentDesc = excellentDesc;
+		this.excellentLack = excellentLack;
+	}
+
+	// Property accessors
+
+	public Integer getExcellentId() {
+		return this.excellentId;
+	}
+
+	public void setExcellentId(Integer excellentId) {
+		this.excellentId = excellentId;
+	}
+
+	public Ridgepole getRidgepole() {
+		return this.ridgepole;
+	}
+
+	public void setRidgepole(Ridgepole ridgepole) {
+		this.ridgepole = ridgepole;
+	}
+
+	public String getExcellentState() {
+		return this.excellentState;
+	}
+
+	public void setExcellentState(String excellentState) {
+		this.excellentState = excellentState;
+	}
+
+	public Date getExcellentTime() {
+		return this.excellentTime;
+	}
+
+	public void setExcellentTime(Date excellentTime) {
+		this.excellentTime = excellentTime;
+	}
+
+	public String getExcellentDesc() {
+		return this.excellentDesc;
+	}
+
+	public void setExcellentDesc(String excellentDesc) {
+		this.excellentDesc = excellentDesc;
+	}
+
+	public String getExcellentLack() {
+		return this.excellentLack;
+	}
+
+	public void setExcellentLack(String excellentLack) {
+		this.excellentLack = excellentLack;
+	}
+
+}

@@ -1,0 +1,125 @@
+package com.system.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.system.bean.ExcellentBean;
+import com.system.callback.FenYeAllDataCallBack;
+import com.system.dao.ExcellentDAO;
+import com.system.dao.RidgepoleDAO;
+import com.system.dao.RoomDAO;
+import com.system.hqldao.impl.HqlFenYeDAOImpl;
+import com.system.pojos.Excellent;
+import com.system.service.RoomExcellentService;
+import com.system.utils.Constant;
+import com.system.utils.FormatUtils;
+import com.system.utils.StringUtils;
+
+@Service("roomExcellentServiceImpl")
+public class RoomExcellentServiceImpl implements RoomExcellentService{
+	@Autowired
+	private ExcellentDAO excellentDAO;
+	
+	@Autowired
+	private RoomDAO roomDAO;
+	
+	@Autowired
+	private RidgepoleDAO reRidgepoleDAO;
+	
+	@Autowired
+	private HqlFenYeDAOImpl hqlFenYeDAOImpl;
+	
+	
+	
+	
+	/**
+	 * hqlDAO.getPageCount()页面总数
+	 * hqlDAO.getCurrentPageId()当前页面的Id
+	 * @param pageId
+	 * @param fenye
+	 * @return
+	 */
+	@Override
+	public String findAllService(String pageId,final FenYeAllDataCallBack<ExcellentBean> fenye){
+		List<ExcellentBean> formatExcellentTime = hqlFenYeDAOImpl.findRoomAllDao(ExcellentBean.class,pageId);
+		try {
+			//处理宿舍评比时间，从数据库中查询出来的时间个是为：2014-02-25 00:00:00.0,将当期那的格式化为2014-02-25
+			formatExcellentTime = FormatUtils.formatExcellentTime(formatExcellentTime);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		fenye.allObjCount(hqlFenYeDAOImpl.getPageCount(),hqlFenYeDAOImpl.getAllCountObj(),hqlFenYeDAOImpl.getCurrentPageId(), formatExcellentTime);
+		return fenye.getJumpUrl();
+		
+	}
+		
+	
+	
+	@Override
+	public String findRoomService(String roomNick,String pageId,final FenYeAllDataCallBack<ExcellentBean> fenye){
+		List<ExcellentBean> list = new ArrayList<ExcellentBean>();
+		//现根据每一栋寝室楼Id去查，再根据所有的宿舍Id去分别查找
+		/*List<Integer> findAllLikeRoom = roomDAO.findAllLikeRoom(roomNick);
+		//再根据每一个房间的ID查询，整合所有的寝室数据
+		for (Integer roomId : findAllLikeRoom) {
+			//根据每一个宿舍的id去找
+			List<ExcellentBean> findByRoomId = hqlFenYeDAOImpl.findByRoomId(roomId,pageId);
+			//将所有的数据重新整合
+		}
+		
+		try {
+		//处理宿舍评比时间，从数据库中查询出来的时间个是为：2014-02-25 00:00:00.0,将当期那的格式化为2014-02-25
+		list = FormatUtils.formatExcellentTime(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//重新整合页面的数量
+		int page = list.size()%Constant.pageItemSize;
+		int pageCount = (page==0?page:page+1);
+		fenye.allObjCount(pageCount,list.size(),hqlFenYeDAOImpl.getCurrentPageId(), list);*/
+		return fenye.getJumpUrl();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+//数据的删除===============================================================================================================
+		@Transactional(propagation=Propagation.REQUIRED)
+		@Override
+		public String deleteById(String findById,final FenYeAllDataCallBack<ExcellentBean> fenye){
+			int deleteId = StringUtils.formatDeleteId(findById);
+			//删除之前先查询当前对象是否还存在数据库中，如果存在就删除如果不存在就不用删除
+			Excellent excellent = excellentDAO.findById(deleteId);
+			StringUtils.log(this,"数据对象打印");
+			if(excellent!=null){
+				//检查数据库中是否存在当前的数据对象
+				excellentDAO.delete(excellent);
+			}
+			//删除数据以后，恢复到第一页
+			return this.findAllService(StringUtils.formatDefaultPageId(), fenye);
+		}
+		
+	
+	}

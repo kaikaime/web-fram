@@ -1,0 +1,88 @@
+package com.system.pojos;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Student entity. @author MyEclipse Persistence Tools
+ */
+
+public class Student implements java.io.Serializable {
+
+	// Fields
+
+	
+	private Integer studentId;
+	private Classt classt;
+	private String studentNick;
+	private String studentSex;
+	private String studentTel;
+	private Room room;
+	private String studentIdCard;
+	private Set vactions = new HashSet(0);
+	private Set violations = new HashSet(0);
+	
+	public Classt getClasst() {
+		return classt;
+	}
+	public void setClasst(Classt classt) {
+		this.classt = classt;
+	}
+	public Integer getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
+	}
+	
+	public String getStudentNick() {
+		return studentNick;
+	}
+	public void setStudentNick(String studentNick) {
+		this.studentNick = studentNick;
+	}
+	public String getStudentSex() {
+		return studentSex;
+	}
+	public void setStudentSex(String studentSex) {
+		this.studentSex = studentSex;
+	}
+	public String getStudentTel() {
+		return studentTel;
+	}
+	public void setStudentTel(String studentTel) {
+		this.studentTel = studentTel;
+	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	public String getStudentIdCard() {
+		return studentIdCard;
+	}
+	public void setStudentIdCard(String studentIdCard) {
+		this.studentIdCard = studentIdCard;
+	}
+	public Set getVactions() {
+		return vactions;
+	}
+	public void setVactions(Set vactions) {
+		this.vactions = vactions;
+	}
+	public Set getViolations() {
+		return violations;
+	}
+	public void setViolations(Set violations) {
+		this.violations = violations;
+	}
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	
+
+}

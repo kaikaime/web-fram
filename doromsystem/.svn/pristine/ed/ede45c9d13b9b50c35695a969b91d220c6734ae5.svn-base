@@ -1,0 +1,22 @@
+package com.system.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+@RequestMapping("/vaction")
+public class VactionController {
+	
+	
+	@RequestMapping(value="/findAll",params={"method=findAll"},method=RequestMethod.GET)
+	public  String findAll(@RequestParam(value="pageId",required=false,defaultValue="1")String pageId,final ModelMap modelMap){
+		System.out.println("jjj"+pageId);
+		
+		return "/vaction";
+		
+	}
+
+}

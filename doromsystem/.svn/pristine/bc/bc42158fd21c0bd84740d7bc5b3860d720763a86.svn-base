@@ -1,0 +1,58 @@
+*{
+				padding: 0px;
+				margin: 0px;
+			}
+			.div-body{
+				margin-top: 50px;
+				border: 1px solid blue;
+				width: 500px;
+				height: 500px;
+			}
+			.div-head{
+				width:500px;
+				height:80px;
+				border: 1px solid blue;
+				background-color: blue;
+				font-size: 40px;
+				line-height: 80px;
+				font-family: "楷体";
+				color: #FFFFFF;
+			}
+			.div-body-form{
+				width:500px;
+				height:419px;
+				border: 1px solid blue;
+			}
+			table{
+				width: 440px;
+				height: 419px;
+				border: 1px solid blue;
+				border-collapse: collapse;
+			}
+			tr{
+				border: 1px solid blue;
+			}
+			td{
+				border: 1px solid blue;
+			}
+			.td-title{
+				color: red;
+			}
+			.input-text{
+				width: 160px;
+				height: 20px;
+				background-color: #FFFFFF;
+				color: #000000;
+			}
+			.submit-btn{
+				width: 160px;
+				height: 40px;
+				background-color: blue;
+				color: #FFFFFF;
+				border: 0px solid #FFFFFF;
+				font-size: 20px;
+			}
+			input,select{
+				border: 1px solid blue;
+			}
+			

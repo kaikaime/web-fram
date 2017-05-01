@@ -1,0 +1,60 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>宿舍管理系统登录</title>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css" />
+		
+		
+		<script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery-3.1.1.js"></script>
+		<script type="text/javascript">
+				function login(forms){
+					if($(".input-text-name").val()==""){
+						return false;
+					}else if($(".input-text-pass").val()==""){
+						return false;
+					}
+					return true;
+				}
+				
+				
+				
+				
+		</script>
+	</head>
+	<body>
+	
+		<div class="div-body">
+			<div class="top_title">
+			宿舍管理系统登录
+			</div>
+			<form action="${pageContext.request.contextPath}/login.do?method=login" method="post" onsubmit="return login(this);">
+				<div class="div-name">
+					<span class="span-name">用户名:</span>
+					<input type="text" class="input-text-name" name="accNumber"/>
+				</div>
+				
+				<div class="div-pass">
+					<span class="span-pass">密&nbsp; 码:</span>
+					<input type="text" class="input-text-pass" name="accPass" />
+				</div>
+				
+				<div class="div-login">
+					<input type="submit" class="input-submit"  value="登&nbsp;录"/>
+					<input type="button" class="input-button"  value="取&nbsp;消"/>
+				</div>
+				<div class="div-footer">
+					<a class="a-right">注册</a>
+					<a class="a-for">忘记密码</a>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
+
+

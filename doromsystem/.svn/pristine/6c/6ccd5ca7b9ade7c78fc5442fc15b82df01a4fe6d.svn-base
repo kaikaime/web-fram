@@ -1,0 +1,95 @@
+package com.system.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.system.bean.ExcellentBean;
+import com.system.bean.HealthBean;
+import com.system.callback.FenYeAllDataCallBack;
+import com.system.dao.HealthDAO;
+import com.system.dao.HealthstateDAO;
+import com.system.dao.MarkDAO;
+import com.system.hqldao.impl.HqlFenYeDAOImpl;
+import com.system.pojos.Health;
+import com.system.pojos.Healthstate;
+import com.system.pojos.Mark;
+import com.system.service.IRoomHealthService;
+import com.system.utils.FormatUtils;
+import com.system.utils.StringUtils;
+
+@Service
+public class IRoomHealthServiceImpl implements IRoomHealthService {
+	@Autowired
+	private HqlFenYeDAOImpl hqlFenYeDAOImpl;
+	
+	@Autowired
+	private HealthDAO healthDAO;
+	
+	@Autowired
+	private HealthstateDAO healthstateDAO;
+	
+	@Autowired
+	private MarkDAO markDAO;
+	
+	
+	
+	
+	
+	
+	
+	 
+
+	
+	@Override
+	public String findAllService(String pageId,
+			FenYeAllDataCallBack<HealthBean> fenye) {
+			List<HealthBean> findHealthAllDao = hqlFenYeDAOImpl.findHealthAllDao(pageId,HealthBean.class);
+			try {
+				findHealthAllDao = FormatUtils.fomatHealthTime(findHealthAllDao);
+			} catch (Exception e) {
+		}
+			fenye.allObjCount(hqlFenYeDAOImpl.getPageCount(), hqlFenYeDAOImpl.getAllCountObj(),hqlFenYeDAOImpl.getCurrentPageId(), findHealthAllDao);
+			
+			System.out.println("========"+hqlFenYeDAOImpl.getAllCountObj()+" "+hqlFenYeDAOImpl.getCurrentPageId()+" "+hqlFenYeDAOImpl.getPageCount());
+			return fenye.getJumpUrl();
+	}
+
+	@Transactional
+	@Override
+	public String deleteById(String healthId, String markId,
+			String healthStateId,
+			FenYeAllDataCallBack<HealthBean> fenYeAllDataCallBack) {
+			//检查卫生对象是否存在
+			if(healthId!=null&&!"".equals(healthId)){
+				Health findById = healthDAO.findById(Integer.parseInt(healthId));
+				if(findById!=null){
+					healthDAO.delete(findById);
+				}
+			}
+			
+			if(healthStateId!=null&&!"".equals(healthStateId)){
+				Healthstate findById = healthstateDAO.findById(Integer.parseInt(healthStateId));
+				if(findById!=null){
+					healthstateDAO.delete(findById);
+				}
+			}
+			if(markId!=null&&!"".equals(markId)){
+				Mark findById = markDAO.findById(Integer.parseInt(markId));
+				if(findById!=null){
+					markDAO.delete(findById);
+				}
+			}
+			return fenYeAllDataCallBack.getJumpUrl();
+		
+	}
+
+
+	
+	
+	
+		
+
+}

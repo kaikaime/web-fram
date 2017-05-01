@@ -1,0 +1,97 @@
+package com.system.pojos;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Man entity. @author MyEclipse Persistence Tools
+ */
+
+public class Man implements java.io.Serializable {
+
+	// Fields
+
+	private Integer manId;
+	private String manNick;
+	private String manSex;
+	private String manTel;
+	private String manIdCard;
+	private String manAddress;
+	private Set accts = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Man() {
+	}
+
+	/** full constructor */
+	public Man(String manNick, String manSex, String manTel, String manIdCard,
+			String manAddress, Set accts) {
+		this.manNick = manNick;
+		this.manSex = manSex;
+		this.manTel = manTel;
+		this.manIdCard = manIdCard;
+		this.manAddress = manAddress;
+		this.accts = accts;
+	}
+
+	// Property accessors
+
+	public Integer getManId() {
+		return this.manId;
+	}
+
+	public void setManId(Integer manId) {
+		this.manId = manId;
+	}
+
+	public String getManNick() {
+		return this.manNick;
+	}
+
+	public void setManNick(String manNick) {
+		this.manNick = manNick;
+	}
+
+	public String getManSex() {
+		return this.manSex;
+	}
+
+	public void setManSex(String manSex) {
+		this.manSex = manSex;
+	}
+
+	public String getManTel() {
+		return this.manTel;
+	}
+
+	public void setManTel(String manTel) {
+		this.manTel = manTel;
+	}
+
+	public String getManIdCard() {
+		return this.manIdCard;
+	}
+
+	public void setManIdCard(String manIdCard) {
+		this.manIdCard = manIdCard;
+	}
+
+	public String getManAddress() {
+		return this.manAddress;
+	}
+
+	public void setManAddress(String manAddress) {
+		this.manAddress = manAddress;
+	}
+
+	public Set getAccts() {
+		return this.accts;
+	}
+
+	public void setAccts(Set accts) {
+		this.accts = accts;
+	}
+
+}

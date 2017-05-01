@@ -1,0 +1,75 @@
+package com.system.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.ejb.criteria.ParameterContainer.Helper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.system.bean.ExcellentBean;
+import com.system.bean.HealthBean;
+import com.system.callback.FenYeAllDataCallBack;
+import com.system.service.IRoomHealthService;
+import com.system.service.impl.IRoomHealthServiceImpl;
+import com.system.utils.StringUtils;
+
+
+@Controller
+@RequestMapping("/health")
+public class RoomHealthController {	
+	@Autowired
+	private IRoomHealthService iRoomHealthServiceImpl;
+	
+	
+	
+	@RequestMapping(value="/findAll",params={"method=findAll"},method=RequestMethod.GET)
+	public String findAll(@RequestParam(value="pageId",required=false,defaultValue="1")String pageId,final ModelMap modelMap){
+		System.out.println("ppppppp"+pageId);
+		return iRoomHealthServiceImpl.findAllService(pageId, new FenYeAllDataCallBack<HealthBean>() {
+				@Override
+				public String getJumpUrl() {
+					return "/health";
+				}
+				
+				@Override
+				public void allObjCount(int pageCount, int allObjCount, int pageId,
+						List<HealthBean> list) {
+						modelMap.addAttribute("pageCount", pageCount);
+						modelMap.addAttribute("allObjCount", allObjCount);
+						modelMap.addAttribute("pageId", pageId);
+						modelMap.addAttribute("itemlist", list);
+				}
+			});
+	}
+	
+	@RequestMapping(value="/delete",params={"method=delete"},method=RequestMethod.GET)
+	public String delete(
+			@RequestParam(value="healthId")String healthId,
+			@RequestParam(value="markId")String markId,
+			@RequestParam(value="stateId")String stateId,final ModelMap modelMap){
+			return iRoomHealthServiceImpl.deleteById(healthId,markId,stateId,new FenYeAllDataCallBack<HealthBean>() {
+
+				@Override
+				public void allObjCount(int pageCount, int allObjCount,
+						int pageId, List<HealthBean> list) {
+					modelMap.addAttribute("pageCount", pageCount);
+					modelMap.addAttribute("allObjCount", allObjCount);
+					modelMap.addAttribute("pageId", pageId);
+					modelMap.addAttribute("itemlist", list);
+				}
+				@Override
+				public String getJumpUrl() {
+					return "/health";
+				}
+			});
+	}
+
+}

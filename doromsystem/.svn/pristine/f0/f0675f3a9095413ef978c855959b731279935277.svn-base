@@ -1,0 +1,38 @@
+package com.system.service.impl;
+
+import java.util.Iterator;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.system.callback.FenYeAllDataCallBack;
+import com.system.hqldao.impl.HqlFenYeDAOImpl;
+import com.system.pojos.Room;
+import com.system.pojos.Student;
+import com.system.service.IAllRoomStudentInforService;
+
+@Service
+public class IAllRoomStudentInforServiceImpl implements IAllRoomStudentInforService{
+
+	@Autowired
+	private HqlFenYeDAOImpl hqlFenYeDAOImpl;
+	
+	@Override
+	public String findAllRoomStudentSerice(String pageId,
+			FenYeAllDataCallBack<List<Room>> fenYeAllDataCallBack) {
+		List<Room> list = hqlFenYeDAOImpl.findAllRoomStudentInfo(pageId);
+		
+		
+		for (Room room : list) {
+			Iterator iterator = room.getStudent().iterator();
+			while(iterator.hasNext()){
+				Student student = (Student) iterator.next();
+				System.out.println(student.toString());
+			}
+		}
+		return fenYeAllDataCallBack.getJumpUrl();
+		
+	}
+
+}

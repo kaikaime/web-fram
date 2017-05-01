@@ -1,0 +1,180 @@
+package com.system.bean;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import com.system.pojos.Mark;
+import com.system.pojos.Ridgepole;
+import com.system.pojos.Room;
+
+public class HealthBean implements Serializable{
+	private Integer ridgId;
+	private String ridgNick;
+	private Integer roomId;
+	private String roomNick;
+	private Integer stateId;
+	private String state;
+	private String stateDesc ;
+	private Date stateTime;
+	private Integer healthId;
+	private String healthDesc;
+	private Date healthTime;
+	private Integer rmId;
+	private Integer markId;
+	private String markNumber;
+	private String markDesc;
+	private Date markTime;
+	private String formatDate;
+	private String formatRoom;
+	
+	public String getFormatRoom() {
+		return formatRoom;
+	}
+	public void setFormatRoom(String formatRoom) {
+		this.formatRoom = formatRoom;
+	}
+	
+	public String getFormatDate() {
+		return formatDate;
+	}
+	public void setFormatDate(String formatDate) {
+		this.formatDate = formatDate;
+	}
+	public Integer getRidgId() {
+		return ridgId;
+	}
+	public void setRidgId(Integer ridgId) {
+		this.ridgId = ridgId;
+	}
+	public String getRidgNick() {
+		return ridgNick;
+	}
+	public void setRidgNick(String ridgNick) {
+		this.ridgNick = ridgNick;
+	}
+	public Integer getRoomId() {
+		return roomId;
+	}
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
+	}
+	public String getRoomNick() {
+		return roomNick;
+	}
+	public void setRoomNick(String roomNick) {
+		this.roomNick = roomNick;
+	}
+	public Integer getStateId() {
+		return stateId;
+	}
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getStateDesc() {
+		return stateDesc;
+	}
+	public void setStateDesc(String stateDesc) {
+		this.stateDesc = stateDesc;
+	}
+	public Date getStateTime() {
+		return stateTime;
+	}
+	public void setStateTime(Date stateTime) {
+		this.stateTime = stateTime;
+	}
+	public Integer getHealthId() {
+		return healthId;
+	}
+	public void setHealthId(Integer healthId) {
+		this.healthId = healthId;
+	}
+	public String getHealthDesc() {
+		return healthDesc;
+	}
+	public void setHealthDesc(String healthDesc) {
+		this.healthDesc = healthDesc;
+	}
+	public Date getHealthTime() {
+		return healthTime;
+	}
+	public void setHealthTime(Date healthTime) {
+		this.healthTime = healthTime;
+	}
+	public Integer getRmId() {
+		return rmId;
+	}
+	public void setRmId(Integer rmId) {
+		this.rmId = rmId;
+	}
+	public Integer getMarkId() {
+		return markId;
+	}
+	public void setMarkId(Integer markId) {
+		this.markId = markId;
+	}
+	public String getMarkNumber() {
+		return markNumber;
+	}
+	public void setMarkNumber(String markNumber) {
+		this.markNumber = markNumber;
+	}
+	public String getMarkDesc() {
+		return markDesc;
+	}
+	public void setMarkDesc(String markDesc) {
+		this.markDesc = markDesc;
+	}
+	public Date getMarkTime() {
+		return markTime;
+	}
+	public void setMarkTime(Date markTime) {
+		this.markTime = markTime;
+	}
+	public HealthBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public HealthBean(Integer ridgId, String ridgNick, Integer roomId,
+			String roomNick, Integer stateId, String state, String stateDesc,
+			Date stateTime, Integer healthId, String healthDesc,
+			Date healthTime, Integer rmId, Integer markId, String markNumber,
+			String markDesc, Date markTime) {
+		super();
+		this.ridgId = ridgId;
+		this.ridgNick = ridgNick;
+		this.roomId = roomId;
+		this.roomNick = roomNick;
+		this.stateId = stateId;
+		this.state = state;
+		this.stateDesc = stateDesc;
+		this.stateTime = stateTime;
+		this.healthId = healthId;
+		this.healthDesc = healthDesc;
+		this.healthTime = healthTime;
+		this.rmId = rmId;
+		this.markId = markId;
+		this.markNumber = markNumber;
+		this.markDesc = markDesc;
+		this.markTime = markTime;
+	}
+	@Override
+	public String toString() {
+		return "HealthBean [ridgId=" + ridgId + ", ridgNick=" + ridgNick
+				+ ", roomId=" + roomId + ", roomNick=" + roomNick
+				+ ", stateId=" + stateId + ", state=" + state + ", stateDesc="
+				+ stateDesc + ", stateTime=" + stateTime + ", healthId="
+				+ healthId + ", healthDesc=" + healthDesc + ", healthTime="
+				+ healthTime + ", rmId=" + rmId + ", markId=" + markId
+				+ ", markNumber=" + markNumber + ", markDesc=" + markDesc
+				+ ", markTime=" + markTime + ", formatDate=" + formatDate
+				+ ", formatRoom=" + formatRoom + "]";
+	}
+	
+
+}

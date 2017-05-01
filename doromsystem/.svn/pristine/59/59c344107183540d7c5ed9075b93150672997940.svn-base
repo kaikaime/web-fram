@@ -1,0 +1,48 @@
+*{
+				padding: 0px;
+				margin: 0px;
+			}
+			.div-body{
+				margin-top: 50px;
+				width: 500px;
+				height: 500px;
+				border: 1px solid blue;
+			}
+			.div-btn{
+				width: 500px;
+				height: 80px;
+				line-height:50px;
+				background-color: blue;
+				color: #FFFFFF;
+				border: 0px solid #FFFFFF;
+				font-size: 40px;
+				font-family: "¿¬Ìå";
+				color: white;
+				}
+				.div-nick{
+					
+					height: 40px;
+					
+				}
+				.input-text-nick{
+					width: 150px;
+					height: 20px;
+					line-height: 40px;
+				}
+				label{
+					font-family: "¿¬Ìå";
+					font-size: 20px;
+					line-height: 40px;
+				}
+				.div-textarea{
+					margin-left: 50px;
+					width: 300px;
+					height: 95px;
+				}
+				.div-ssm{
+					margin-right: 160px;
+				}
+				.ssMenu{
+					height: 150px;
+					width: 500px;
+				}

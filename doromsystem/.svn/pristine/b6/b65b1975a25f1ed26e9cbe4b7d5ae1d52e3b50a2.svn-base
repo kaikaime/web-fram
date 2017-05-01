@@ -1,0 +1,42 @@
+package com.system.daos.impl;
+
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.system.daos.IAcctDAO;
+import com.system.pojos.Acct;
+
+@Transactional
+public class IAcctDAOImpl implements IAcctDAO{
+	private SessionFactory sessionFactory;
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	public Session getCurrentSession(){
+		return sessionFactory.getCurrentSession();
+	}
+	
+	
+	
+	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Acct isLogin(String userName, String md5Pass) {
+		System.out.println("25F9E794323B453885F5181F1B624D0B".equals(md5Pass));
+		System.out.println("isLogin "+userName+" "+md5Pass);
+		String hql = "FROM Acct as acct  WHERE acct.accNumber=? and acct.accPass=?";
+		Query query =getCurrentSession().createQuery(hql);
+		query.setParameter(0, userName);
+		query.setParameter(1, md5Pass);
+		Acct acct =  (Acct) query.uniqueResult();
+		return  acct;
+	}
+}

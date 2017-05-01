@@ -1,0 +1,123 @@
+package com.system.pojos;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Student entity. @author MyEclipse Persistence Tools
+ */
+
+public class Student implements java.io.Serializable {
+
+	// Fields
+
+	private Integer studentId;
+	private Yarddept yarddept;
+	private String studentNick;
+	private String studentSex;
+	private String studentTel;
+	private Integer roomId;
+	private String studentIdCard;
+	private Set vactions = new HashSet(0);
+	private Set violations = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Student() {
+	}
+
+	/** minimal constructor */
+	public Student(String studentNick) {
+		this.studentNick = studentNick;
+	}
+
+	/** full constructor */
+	public Student(Yarddept yarddept, String studentNick, String studentSex,
+			String studentTel, Integer roomId, String studentIdCard,
+			Set vactions, Set violations) {
+		this.yarddept = yarddept;
+		this.studentNick = studentNick;
+		this.studentSex = studentSex;
+		this.studentTel = studentTel;
+		this.roomId = roomId;
+		this.studentIdCard = studentIdCard;
+		this.vactions = vactions;
+		this.violations = violations;
+	}
+
+	// Property accessors
+
+	public Integer getStudentId() {
+		return this.studentId;
+	}
+
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
+	}
+
+	public Yarddept getYarddept() {
+		return this.yarddept;
+	}
+
+	public void setYarddept(Yarddept yarddept) {
+		this.yarddept = yarddept;
+	}
+
+	public String getStudentNick() {
+		return this.studentNick;
+	}
+
+	public void setStudentNick(String studentNick) {
+		this.studentNick = studentNick;
+	}
+
+	public String getStudentSex() {
+		return this.studentSex;
+	}
+
+	public void setStudentSex(String studentSex) {
+		this.studentSex = studentSex;
+	}
+
+	public String getStudentTel() {
+		return this.studentTel;
+	}
+
+	public void setStudentTel(String studentTel) {
+		this.studentTel = studentTel;
+	}
+
+	public Integer getRoomId() {
+		return this.roomId;
+	}
+
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
+	}
+
+	public String getStudentIdCard() {
+		return this.studentIdCard;
+	}
+
+	public void setStudentIdCard(String studentIdCard) {
+		this.studentIdCard = studentIdCard;
+	}
+
+	public Set getVactions() {
+		return this.vactions;
+	}
+
+	public void setVactions(Set vactions) {
+		this.vactions = vactions;
+	}
+
+	public Set getViolations() {
+		return this.violations;
+	}
+
+	public void setViolations(Set violations) {
+		this.violations = violations;
+	}
+
+}

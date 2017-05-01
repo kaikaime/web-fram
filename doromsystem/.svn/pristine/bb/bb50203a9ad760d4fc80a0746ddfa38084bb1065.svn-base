@@ -1,0 +1,9 @@
+package com.system.service;
+
+import com.system.pojos.Acct;
+
+public interface ILoginAndRegisterService {
+
+	Acct login(String userName, String md5Pass);
+
+}

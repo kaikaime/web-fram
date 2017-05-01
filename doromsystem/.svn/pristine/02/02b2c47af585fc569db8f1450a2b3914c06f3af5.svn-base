@@ -1,0 +1,17 @@
+hibernate.jdbcUrl=jdbc:mysql://127.0.0.1:3306/test
+hernate.user=root
+hibernate.password=admin
+hibernate.driverClass=com.mysql.jdbc.Driver
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+#hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+hibernate.show_sql=true
+jdbc.c3p0.testConnectionOnCheckout=false
+jdbc.c3p0.testConnectionOnCheckin=true
+jdbc.c3p0.idleConnectionTestPeriod=3600
+jdbc.c3p0.initialPoolSize=10
+jdbc.c3p0.minPoolSize=10
+jdbc.c3p0.maxPoolSize=100
+jdbc.c3p0.maxIdleTime=3600
+cache.use_second_level_cache=true
+cache.provider_class=true
+

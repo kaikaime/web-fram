@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Sat Apr 08 09:55:19 GMT+08:00 2017
+genBasicCompId=false
+sessionFactoryName=
+profile=
+daoSFId=sessionFactory
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=src/applicationContext.xml
+useJavaTypes=true
+keyGenerator=identity
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=/doromsystem/hibernate.reveng.xml
+configFile=/doromsystem/src/hibernate.cfg.xml
+createConfigFile=true

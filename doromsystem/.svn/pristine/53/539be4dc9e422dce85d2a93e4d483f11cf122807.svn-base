@@ -1,0 +1,62 @@
+package com.system.pojos;
+
+import java.util.Date;
+
+/**
+ * Excellent entity. @author MyEclipse Persistence Tools
+ */
+
+public class Excellent implements java.io.Serializable {
+
+	// Fields
+
+	private Integer excellentId;
+	private Room room;
+	private String excellentState;
+	private Date excellentTime;
+	private String excellentDesc;
+	private String excellentLack;
+	public Excellent() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Integer getExcellentId() {
+		return excellentId;
+	}
+	public void setExcellentId(Integer excellentId) {
+		this.excellentId = excellentId;
+	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	public String getExcellentState() {
+		return excellentState;
+	}
+	public void setExcellentState(String excellentState) {
+		this.excellentState = excellentState;
+	}
+	public Date getExcellentTime() {
+		return excellentTime;
+	}
+	public void setExcellentTime(Date excellentTime) {
+		this.excellentTime = excellentTime;
+	}
+	public String getExcellentDesc() {
+		return excellentDesc;
+	}
+	public void setExcellentDesc(String excellentDesc) {
+		this.excellentDesc = excellentDesc;
+	}
+	public String getExcellentLack() {
+		return excellentLack;
+	}
+	public void setExcellentLack(String excellentLack) {
+		this.excellentLack = excellentLack;
+	}
+	
+
+	
+}

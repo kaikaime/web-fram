@@ -1,0 +1,10 @@
+package com.system.daos;
+
+import com.system.daos.impl.IAcctDAOImpl;
+import com.system.pojos.Acct;
+
+public interface IAcctDAO {
+
+	Acct isLogin(String userName, String md5Pass);
+
+}

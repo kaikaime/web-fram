@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="connection.url">
+			jdbc:mysql://127.0.0.1:3306/test
+		</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">admin</property>
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<mapping resource="com/system/hbm/Yarddept.hbm.xml" />
+		<mapping resource="com/system/hbm/Student.hbm.xml" />
+		<mapping resource="com/system/hbm/Room.hbm.xml" />
+		<mapping resource="com/system/hbm/Violation.hbm.xml" />
+		<mapping resource="com/system/hbm/Vaction.hbm.xml" />
+		<mapping resource="com/system/hbm/Healthstate.hbm.xml" />
+		<mapping resource="com/system/hbm/Roommark.hbm.xml" />
+		<mapping resource="com/system/hbm/Classt.hbm.xml" />
+		<mapping resource="com/system/hbm/Ridgepole.hbm.xml" />
+		<mapping resource="com/system/hbm/Mark.hbm.xml" />
+
+		<mapping resource="com/system/hbm/Excellent.hbm.xml" />
+		<mapping resource="com/system/hbm/Health.hbm.xml" />
+		<mapping resource="com/system/pojos/Acct.hbm.xml" />
+		<mapping resource="com/system/pojos/Man.hbm.xml" />
+
+
+
+	</session-factory>
+
+</hibernate-configuration>

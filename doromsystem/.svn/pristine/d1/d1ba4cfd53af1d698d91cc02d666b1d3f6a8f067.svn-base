@@ -1,0 +1,18 @@
+package com.system.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.system.bean.HealthBean;
+import com.system.callback.FenYeAllDataCallBack;
+import com.system.service.IVactionService;
+
+@Service
+public class IVactionServiceImpl implements IVactionService{
+
+	@Override
+	public String findAllService(String pageId,
+			FenYeAllDataCallBack<HealthBean> fenYeAllDataCallBack) {
+		return null;
+	}
+
+}

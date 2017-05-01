@@ -1,0 +1,71 @@
+package com.system.pojos;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Ridgepole entity. @author MyEclipse Persistence Tools
+ */
+
+public class Ridgepole implements java.io.Serializable {
+
+	// Fields
+
+	private Integer ridgId;
+	private String ridgNick;
+	private Set excellents = new HashSet(0);
+	private Set rooms = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Ridgepole() {
+	}
+
+	/** minimal constructor */
+	public Ridgepole(String ridgNick) {
+		this.ridgNick = ridgNick;
+	}
+
+	/** full constructor */
+	public Ridgepole(String ridgNick, Set excellents, Set rooms) {
+		this.ridgNick = ridgNick;
+		this.excellents = excellents;
+		this.rooms = rooms;
+	}
+
+	// Property accessors
+
+	public Integer getRidgId() {
+		return this.ridgId;
+	}
+
+	public void setRidgId(Integer ridgId) {
+		this.ridgId = ridgId;
+	}
+
+	public String getRidgNick() {
+		return this.ridgNick;
+	}
+
+	public void setRidgNick(String ridgNick) {
+		this.ridgNick = ridgNick;
+	}
+
+	public Set getExcellents() {
+		return this.excellents;
+	}
+
+	public void setExcellents(Set excellents) {
+		this.excellents = excellents;
+	}
+
+	public Set getRooms() {
+		return this.rooms;
+	}
+
+	public void setRooms(Set rooms) {
+		this.rooms = rooms;
+	}
+
+}
